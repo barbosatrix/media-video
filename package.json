@@ -1,16 +1,15 @@
 {
   "name": "platzi-media-player",
   "version": "1.0.0",
-  "description": "Proyecto del curso profesional de Javascript",
-  "main": "index.js",
+  "description": "Proyecto del Curso Profesional de JavaScript de la Escuela de JavaScript de Platzi.",
+  "license": "MIT",
+  "author": "Richard B. Kaufman López <richardbkaufman@gmail.com>",
+  "keywords": [
+    "platzi"
+  ],
   "scripts": {
     "start": "live-server"
   },
-  "keywords": [
-    "media-player"
-  ],
-  "author": "Gerard Barbosa <barbosatrix@gmail.com>",
-  "license": "MIT",
   "devDependencies": {
     "live-server": "^1.2.1"
   }

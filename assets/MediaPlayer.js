@@ -1,42 +1,50 @@
-function MediaPlayer(config){
-    this.media = config.el;
-    this.plugins = config.plugins || [];
-    this._initPlugins() ;
+function MediaPlayer(config) {
+  this.media = config.el;
+  this.plugins = config.plugins || [];
+
+  this._initPlugins();
 }
 
-MediaPlayer.prototype._initPlugins = function(){
-    console.log(this.media)
-    this.plugins.forEach(plugins => {
-        plugins.run(this)
-    });
-}
+MediaPlayer.prototype._initPlugins = function() {
 
-MediaPlayer.prototype.play = function(){
-    this.media.play()
-}
-
-MediaPlayer.prototype.pause = function(){
-    this.media.pause()
-}
-
-MediaPlayer.prototype.tooglePlay = function (){
-    if (this.media.paused) {
-        this.play()
-        console.log('play')
-    } else {
-        this.pause()
-        console.log('paused')
+  const player ={
+    play: () => this.play(),
+    pause: () => this.pause(),
+    media: this.media,
+    get muted(){
+      return this.media.muted;
+    },
+    set muted(value){
+      this.media.muted = value
     }
-}
+  }
+  this.plugins.forEach(plugin => {
+    plugin.run(player);
+  });
+};
 
-MediaPlayer.prototype.silence = function (){
-    console.log('muted function')
-    this.media.muted = true;
-}
+MediaPlayer.prototype.play = function() {
+  this.media.play();
+};
 
-MediaPlayer.prototype.unsilence = function (){
-    this.media.muted = false;
-}
+MediaPlayer.prototype.pause = function() {
+  this.media.pause();
+};
 
+MediaPlayer.prototype.togglePlay = function() {
+  if (this.media.paused) {
+    this.play();
+  } else {
+    this.pause();
+  }
+};
+
+MediaPlayer.prototype.mute = function() {
+  this.media.muted = true;
+};
+
+MediaPlayer.prototype.unmute = function() {
+  this.media.muted = false;
+};
 
 export default MediaPlayer;
